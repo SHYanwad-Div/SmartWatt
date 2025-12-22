@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_log:/mosquitto/log
+
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=smartwatt
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURE_ADMIN_PASSWORD=admin
+
+  ingest:
+    build: ../ingest
+    environment:
+      - MQTT_URL=mqtt://mosquitto:1883
+      - INFLUX_HOST=influxdb
+      - INFLUX_DB=smartwatt
+      - a90aa005420ba11b2b59c0cc7ad1999f # API key for external service
+      - ALERT_THRESHOLD_W=1200
+      - ALERT_COOLDOWN_SEC=900
+      - TELEGRAM_BOT_TOKEN=123456:ABC...
+      - TELEGRAM_CHAT_ID=987654321
+      - SMTP_HOST=smtp.example.com
+      - SMTP_PORT=587
+      - SMTP_USER=your_smtp_user
+      - SMTP_PASS=your_smtp_pass
+      - ALERT_EMAIL_TO=shyanwad25@gmail.com
+
+    ports:
+      - "3000:3000"
+
+volumes:
+  mosquitto_data:
+  mosquitto_log:
+  influxdb_data:
