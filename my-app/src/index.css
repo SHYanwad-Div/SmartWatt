@@ -1,0 +1,73 @@
+/* src/index.css - Pastel UI styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #ffe5ec 0%, #fff7ee 45%, #e8fff0 100%);
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2b2b2b;
+}
+
+/* hero / top area */
+.app-hero {
+  background: linear-gradient(90deg, rgba(255,158,181,0.12), rgba(120,198,163,0.06));
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+/* small glass cards */
+.glass-card {
+  background: rgba(255,255,255,0.75);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+  border: 1px solid rgba(255,255,255,0.7);
+}
+
+/* Simulate button */
+.sim-btn {
+  background: linear-gradient(90deg,#ff9eb5,#ffc7d9);
+  border: none;
+  color: #420018;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Table styling */
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.85);
+}
+.events-table th, .events-table td {
+  padding: 8px 10px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.events-table thead th {
+  background: rgba(255,242,246,0.8);
+  font-weight: 600;
+}
+
+/* Chat drawer styles */
+.chat-bubble {
+  background: linear-gradient(180deg,#fff2f6,#fff6f9);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+}
+
+/* responsiveness tweaks */
+@media (max-width: 900px) {
+  .app-grid { flex-direction: column; }
+}
