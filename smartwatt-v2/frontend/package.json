@@ -1,0 +1,24 @@
+{
+  "name": "smartwatt-dashboard",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev:demo": "vite --mode demo",
+    "build:demo": "vite build --mode demo --outDir dist-demo",
+    "preview:demo": "vite preview --mode demo --outDir dist-demo"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.186.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

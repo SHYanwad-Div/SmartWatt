@@ -1,0 +1,12 @@
+{
+  "name": "Smart Watt Energy Monitor",
+  "short_name": "Smart Watt",
+  "description": "IoT energy consumption monitoring: live load, appliance breakdown, bills and alerts.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f6f1",
+  "theme_color": "#15803d",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

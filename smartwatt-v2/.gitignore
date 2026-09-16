@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+data/*.db
+data/*.db-*
+data/*.log
+data/.jwt_secret
+node_modules/
+dist/
+.venv/
+firmware/**/secrets.h
+dist-demo/
