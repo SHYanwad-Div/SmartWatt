@@ -183,6 +183,7 @@ If the ESP32 joins Wi-Fi but cannot reach the broker, check that Windows Firewal
 
 ```powershell
 cd docker
+Copy-Item .env.example .env   # first run only; then fill in the keys you want to use
 docker compose up -d --build
 Invoke-RestMethod http://localhost:3000/health
 ```
@@ -198,10 +199,10 @@ npm start
 
 - Open <http://localhost:3002>. The **Simulate** button sends a test reading to the ingest API, which is handy when no ESP32 is connected.
 - Grafana is at <http://localhost:3001>. To chart the `readings` measurement, add an InfluxDB data source with URL `http://influxdb:8086` and database `smartwatt`.
-- The optional alert and weather settings (Telegram, SMTP, OpenWeather) are environment variables of the `ingest` service; they are listed at the top of `ingest/index.js`.
+- The optional alert and weather settings (Telegram, SMTP, OpenWeather) and the Grafana admin password go in `docker/.env`, which is git-ignored; `docker/.env.example` lists them. Leave a value empty to turn that feature off.
 - Stop the stack with `docker compose down`, run in the `docker` folder.
 
-The original v1 sketch is in `esp32/smart_iot_energy_meter/`. For new hardware, use the v2 firmware: it sends the same message format and measures true RMS.
+The original v1 sketch is in `esp32/smart_iot_energy_meter/`. Before uploading it, copy `secrets.example.h` to `secrets.h` in that folder and fill in your Wi-Fi name, password and broker IP; `secrets.h` is git-ignored. For new hardware, use the v2 firmware: it sends the same message format and measures true RMS.
 
 ### Live demo deployment
 

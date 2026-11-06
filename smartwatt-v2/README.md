@@ -182,7 +182,8 @@ cd frontend && npm run dev
 
 ## Security notes
 
-- The Phase-I `../docker/docker-compose.yml` contains a live Telegram bot token, a chat id and
-  an OpenWeather key, and `../esp32/...ino` contains WiFi credentials. Rotate these before
-  publishing the repository.
+- The Phase-I stack keeps its keys in `../docker/.env` and the v1 sketch keeps its Wi-Fi
+  credentials in `../esp32/smart_iot_energy_meter/secrets.h`; both files are git-ignored.
+  Older commits still contain an OpenWeather key and Wi-Fi credentials, so treat those as
+  exposed and rotate them.
 - CORS is open for LAN demos. Restrict `allow_origins` in `backend/app/main.py` before deploying.
