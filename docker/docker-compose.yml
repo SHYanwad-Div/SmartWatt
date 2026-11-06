@@ -26,24 +26,29 @@ services:
     depends_on:
       - influxdb
     environment:
-      - GF_SECURE_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
 
+  # Secrets and personal values come from docker/.env (git-ignored).
+  # Copy .env.example to .env and fill it in; empty values turn that feature off.
   ingest:
     build: ../ingest
     environment:
       - MQTT_URL=mqtt://mosquitto:1883
       - INFLUX_HOST=influxdb
       - INFLUX_DB=smartwatt
-      - a90aa005420ba11b2b59c0cc7ad1999f # API key for external service
-      - ALERT_THRESHOLD_W=1200
-      - ALERT_COOLDOWN_SEC=900
-      - TELEGRAM_BOT_TOKEN=123456:ABC...
-      - TELEGRAM_CHAT_ID=987654321
-      - SMTP_HOST=smtp.example.com
-      - SMTP_PORT=587
-      - SMTP_USER=your_smtp_user
-      - SMTP_PASS=your_smtp_pass
-      - ALERT_EMAIL_TO=shyanwad25@gmail.com
+      - ALERT_THRESHOLD_W=${ALERT_THRESHOLD_W:-1200}
+      - ALERT_COOLDOWN_SEC=${ALERT_COOLDOWN_SEC:-900}
+      - OPENWEATHER_KEY=${OPENWEATHER_KEY:-}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - ALERT_EMAIL_TO=${ALERT_EMAIL_TO:-}
 
     ports:
       - "3000:3000"

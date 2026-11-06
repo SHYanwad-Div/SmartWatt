@@ -1,5 +1,6 @@
 node_modules/
 .env
+esp32/**/secrets.h
 dist/
 build/
 .DS_Store

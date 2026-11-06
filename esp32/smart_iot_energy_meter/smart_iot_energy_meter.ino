@@ -12,11 +12,10 @@
 #include <ArduinoJson.h>
 #include <LiquidCrystal_I2C.h>
 
-const char* WIFI_SSID = "Shyanawad 5G";
-const char* WIFI_PASS = "Stgoud@73";
+// Wi-Fi name, password and MQTT broker IP live in secrets.h (git-ignored).
+// Copy secrets.example.h to secrets.h and fill in your values.
+#include "secrets.h"
 
-// 🔹 UPDATED: use your laptop IP as MQTT broker
-const char* MQTT_BROKER = "192.168.29.156";
 const uint16_t MQTT_PORT = 1883;
 const char* DEVICE_ID = "esp32-smartwatt-001";
 
